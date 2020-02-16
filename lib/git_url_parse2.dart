@@ -1,8 +1,8 @@
-library git_url_parse;
+library git_url_parse2;
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'git_url_parse.freezed.dart';
+part 'git_url_parse2.freezed.dart';
 
 @freezed
 abstract class GitUrlParseResult with _$GitUrlParseResult {

@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
 
-import 'package:git_url_parse/git_url_parse.dart';
+import 'package:git_url_parse2/git_url_parse2.dart';
 
 var INPUT = <String, GitUrlParseResult>{
   // Secure Shell Transport Protocol (SSH)

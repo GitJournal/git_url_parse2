@@ -1,4 +1,4 @@
-name: git_url_parse
+name: git_url_parse2
 description: A low level git url parser.
 version: 0.0.1
 homepage: https://gitjournal.io
