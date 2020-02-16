@@ -19,3 +19,14 @@ abstract class GitUrlParseResult with _$GitUrlParseResult {
 GitUrlParseResult gitUrlParse(String url) {
   return GitUrlParseResult();
 }
+
+bool isSshUrl(String url) {
+  var pIndicatorIndex = url.indexOf('://');
+  if (pIndicatorIndex != -1) {
+    var protocols = url.substring(0, pIndicatorIndex).split('+');
+    return protocols.contains('ssh') || protocols.contains('rsync');
+  }
+
+  // FIXME: Is there a better way?
+  return url.indexOf('@') < url.indexOf(':');
+}
