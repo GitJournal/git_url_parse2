@@ -11,7 +11,7 @@ mixin _$GitUrlParseResult {
   int get port;
   String get resource;
   String get user;
-  String get pathname;
+  String get path;
   String get protocol;
   String get token;
 
@@ -19,7 +19,7 @@ mixin _$GitUrlParseResult {
       {int port,
       String resource,
       String user,
-      String pathname,
+      String path,
       String protocol,
       String token});
 }
@@ -29,7 +29,7 @@ class _$_GitUrlParseResult implements _GitUrlParseResult {
       {this.port,
       this.resource,
       this.user,
-      this.pathname,
+      this.path,
       this.protocol,
       this.token});
 
@@ -40,7 +40,7 @@ class _$_GitUrlParseResult implements _GitUrlParseResult {
   @override
   final String user;
   @override
-  final String pathname;
+  final String path;
   @override
   final String protocol;
   @override
@@ -48,7 +48,7 @@ class _$_GitUrlParseResult implements _GitUrlParseResult {
 
   @override
   String toString() {
-    return 'GitUrlParseResult(port: $port, resource: $resource, user: $user, pathname: $pathname, protocol: $protocol, token: $token)';
+    return 'GitUrlParseResult(port: $port, resource: $resource, user: $user, path: $path, protocol: $protocol, token: $token)';
   }
 
   @override
@@ -62,9 +62,8 @@ class _$_GitUrlParseResult implements _GitUrlParseResult {
                     .equals(other.resource, resource)) &&
             (identical(other.user, user) ||
                 const DeepCollectionEquality().equals(other.user, user)) &&
-            (identical(other.pathname, pathname) ||
-                const DeepCollectionEquality()
-                    .equals(other.pathname, pathname)) &&
+            (identical(other.path, path) ||
+                const DeepCollectionEquality().equals(other.path, path)) &&
             (identical(other.protocol, protocol) ||
                 const DeepCollectionEquality()
                     .equals(other.protocol, protocol)) &&
@@ -78,7 +77,7 @@ class _$_GitUrlParseResult implements _GitUrlParseResult {
       port.hashCode ^
       resource.hashCode ^
       user.hashCode ^
-      pathname.hashCode ^
+      path.hashCode ^
       protocol.hashCode ^
       token.hashCode;
 
@@ -87,7 +86,7 @@ class _$_GitUrlParseResult implements _GitUrlParseResult {
     Object port = freezed,
     Object resource = freezed,
     Object user = freezed,
-    Object pathname = freezed,
+    Object path = freezed,
     Object protocol = freezed,
     Object token = freezed,
   }) {
@@ -95,7 +94,7 @@ class _$_GitUrlParseResult implements _GitUrlParseResult {
       port: port == freezed ? this.port : port as int,
       resource: resource == freezed ? this.resource : resource as String,
       user: user == freezed ? this.user : user as String,
-      pathname: pathname == freezed ? this.pathname : pathname as String,
+      path: path == freezed ? this.path : path as String,
       protocol: protocol == freezed ? this.protocol : protocol as String,
       token: token == freezed ? this.token : token as String,
     );
@@ -107,7 +106,7 @@ abstract class _GitUrlParseResult implements GitUrlParseResult {
       {int port,
       String resource,
       String user,
-      String pathname,
+      String path,
       String protocol,
       String token}) = _$_GitUrlParseResult;
 
@@ -118,7 +117,7 @@ abstract class _GitUrlParseResult implements GitUrlParseResult {
   @override
   String get user;
   @override
-  String get pathname;
+  String get path;
   @override
   String get protocol;
   @override
@@ -129,7 +128,7 @@ abstract class _GitUrlParseResult implements GitUrlParseResult {
       {int port,
       String resource,
       String user,
-      String pathname,
+      String path,
       String protocol,
       String token});
 }

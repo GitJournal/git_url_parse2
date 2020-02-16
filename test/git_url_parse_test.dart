@@ -8,7 +8,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: 42,
     resource: "host.xz",
     user: "user",
-    pathname: "/path/to/repo.git",
+    path: "/path/to/repo.git",
     protocol: "ssh",
   ),
 
@@ -16,7 +16,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "host.xz",
     user: "git",
-    pathname: "/path/name.git",
+    path: "/path/name.git",
     protocol: "git+ssh",
   ),
 
@@ -24,7 +24,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "host.xz",
     user: "user",
-    pathname: "/path/to/repo.git",
+    path: "/path/to/repo.git",
     protocol: "ssh",
   ),
 
@@ -32,7 +32,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: 5497,
     resource: "host.xz",
     user: "",
-    pathname: "/path/to/repo.git",
+    path: "/path/to/repo.git",
     protocol: "ssh",
   ),
 
@@ -40,7 +40,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "host.xz",
     user: "",
-    pathname: "/path/to/repo.git",
+    path: "/path/to/repo.git",
     protocol: "ssh",
   ),
 
@@ -48,7 +48,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "domain.xxx.com",
     user: "git",
-    pathname: "42foo/bar.git",
+    path: "42foo/bar.git",
     protocol: "ssh",
   ),
 
@@ -56,7 +56,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "host.xz",
     user: "user",
-    pathname: "/~user/path/to/repo.git",
+    path: "/~user/path/to/repo.git",
     protocol: "ssh",
   ),
 
@@ -64,7 +64,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "host.xz",
     user: "",
-    pathname: "/~user/path/to/repo.git",
+    path: "/~user/path/to/repo.git",
     protocol: "ssh",
   ),
 
@@ -72,7 +72,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "host.xz",
     user: "user",
-    pathname: "/~/path/to/repo.git",
+    path: "/~/path/to/repo.git",
     protocol: "ssh",
   ),
 
@@ -80,7 +80,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "host.xz",
     user: "",
-    pathname: "/~/path/to/repo.git",
+    path: "/~/path/to/repo.git",
     protocol: "ssh",
   ),
 
@@ -88,7 +88,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "host.xz",
     user: "user",
-    pathname: "/path/to/repo.git",
+    path: "/path/to/repo.git",
     protocol: "ssh",
   ),
 
@@ -96,7 +96,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "host.xz",
     user: "user",
-    pathname: "~user/path/to/repo.git",
+    path: "~user/path/to/repo.git",
     protocol: "ssh",
   ),
 
@@ -104,7 +104,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "host.xz",
     user: "user",
-    pathname: "path/to/repo.git",
+    path: "path/to/repo.git",
     protocol: "ssh",
   ),
 
@@ -112,7 +112,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "host.xz",
     user: "",
-    pathname: "/path/to/repo.git",
+    path: "/path/to/repo.git",
     protocol: "rsync",
   ),
 
@@ -122,7 +122,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "host.xz",
     user: "",
-    pathname: "/path/to/repo.git",
+    path: "/path/to/repo.git",
     protocol: "git",
   ),
 
@@ -130,7 +130,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "host.xz",
     user: "",
-    pathname: "/~user/path/to/repo.git",
+    path: "/~user/path/to/repo.git",
     protocol: "git",
   ),
 
@@ -139,7 +139,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "host.xz",
     user: "",
-    pathname: "/path/to/repo.git",
+    path: "/path/to/repo.git",
     protocol: "http",
   ),
 
@@ -147,7 +147,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "host.xz",
     user: "",
-    pathname: "/path/to/repo.git",
+    path: "/path/to/repo.git",
     protocol: "https",
   ),
 
@@ -155,7 +155,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "host.xz",
     user: "token:x-oauth-basic",
-    pathname: "/path/to/repo.git",
+    path: "/path/to/repo.git",
     token: "token",
     protocol: "https",
   ),
@@ -164,7 +164,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "host.xz",
     user: "x-token-auth:token",
-    pathname: "/path/to/repo.git",
+    path: "/path/to/repo.git",
     token: "token",
     protocol: "https",
   ),
@@ -173,7 +173,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "bitbucket.org",
     user: "user",
-    pathname: "/user/repo",
+    path: "/user/repo",
     protocol: "https",
   ),
 
@@ -181,7 +181,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "organization.git.cloudforge.com",
     user: "user",
-    pathname: "/name.git",
+    path: "/name.git",
     protocol: "https",
   ),
 
@@ -189,7 +189,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "github.com",
     user: "token:x-oauth-basic",
-    pathname: "/owner/name.git",
+    path: "/owner/name.git",
     protocol: "https",
     token: "token",
   ),
@@ -198,7 +198,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "bitbucket.org",
     user: "x-token-auth:token",
-    pathname: "/owner/name.git",
+    path: "/owner/name.git",
     protocol: "https",
     token: "token",
   ),
@@ -207,7 +207,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "",
     user: "",
-    pathname: "/path/to/repo.git",
+    path: "/path/to/repo.git",
     protocol: "file",
   ),
 
@@ -215,7 +215,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "",
     user: "",
-    pathname: "path/to/repo.git",
+    path: "path/to/repo.git",
     protocol: "file",
   ),
 
@@ -223,7 +223,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "",
     user: "",
-    pathname: "~/path/to/repo.git",
+    path: "~/path/to/repo.git",
     protocol: "file",
   ),
 
@@ -231,7 +231,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "",
     user: "",
-    pathname: "/path/to/repo.git",
+    path: "/path/to/repo.git",
     protocol: "file",
   ),
 
@@ -239,7 +239,7 @@ var INPUT = <String, GitUrlParseResult>{
     port: null,
     resource: "host.xz",
     user: "git",
-    pathname: "path/name.git",
+    path: "path/name.git",
     protocol: "ssh",
   ),
 };

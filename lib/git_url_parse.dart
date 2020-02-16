@@ -10,7 +10,7 @@ abstract class GitUrlParseResult with _$GitUrlParseResult {
     int port,
     String resource,
     String user,
-    String pathname,
+    String path,
     String protocol,
     String token,
   }) = _GitUrlParseResult;
@@ -47,7 +47,7 @@ GitUrlParseResult gitUrlParse(String url) {
       port: null,
       resource: host,
       user: user,
-      pathname: path,
+      path: path,
       protocol: 'ssh',
       token: null,
     );
@@ -85,7 +85,7 @@ GitUrlParseResult gitUrlParse(String url) {
     port: uri.hasPort ? uri.port : null,
     resource: uri.host,
     user: uri.userInfo,
-    pathname: path,
+    path: path,
     protocol: protocol,
     token: token,
   );
