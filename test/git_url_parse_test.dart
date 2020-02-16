@@ -2,10 +2,9 @@ import 'package:test/test.dart';
 
 import 'package:git_url_parse/git_url_parse.dart';
 
-const INPUT = <String, GitUrlParseResult>{
+var INPUT = <String, GitUrlParseResult>{
   // Secure Shell Transport Protocol (SSH)
   "ssh://user@host.xz:42/path/to/repo.git/": GitUrlParseResult(
-    protocols: ["ssh"],
     port: 42,
     resource: "host.xz",
     user: "user",
@@ -14,16 +13,14 @@ const INPUT = <String, GitUrlParseResult>{
   ),
 
   "git+ssh://git@host.xz/path/name.git": GitUrlParseResult(
-    protocols: ["git", "ssh"],
     port: null,
     resource: "host.xz",
     user: "git",
     pathname: "/path/name.git",
-    protocol: "ssh",
+    protocol: "gti+ssh",
   ),
 
   "ssh://user@host.xz/path/to/repo.git/": GitUrlParseResult(
-    protocols: ["ssh"],
     port: null,
     resource: "host.xz",
     user: "user",
@@ -32,7 +29,6 @@ const INPUT = <String, GitUrlParseResult>{
   ),
 
   "ssh://host.xz:port/path/to/repo.git/": GitUrlParseResult(
-    protocols: ["ssh"],
     port: null,
     resource: "host.xz",
     user: "",
@@ -41,7 +37,6 @@ const INPUT = <String, GitUrlParseResult>{
   ),
 
   "ssh://host.xz/path/to/repo.git/": GitUrlParseResult(
-    protocols: ["ssh"],
     port: null,
     resource: "host.xz",
     user: "",
@@ -50,7 +45,6 @@ const INPUT = <String, GitUrlParseResult>{
   ),
 
   "git@domain.xxx.com:42foo/bar.git": GitUrlParseResult(
-    protocols: [],
     port: null,
     resource: "domain.xxx.com",
     user: "git",
@@ -59,7 +53,6 @@ const INPUT = <String, GitUrlParseResult>{
   ),
 
   "ssh://user@host.xz/~user/path/to/repo.git/": GitUrlParseResult(
-    protocols: ["ssh"],
     port: null,
     resource: "host.xz",
     user: "user",
@@ -68,7 +61,6 @@ const INPUT = <String, GitUrlParseResult>{
   ),
 
   "ssh://host.xz/~user/path/to/repo.git/": GitUrlParseResult(
-    protocols: ["ssh"],
     port: null,
     resource: "host.xz",
     user: "",
@@ -77,7 +69,6 @@ const INPUT = <String, GitUrlParseResult>{
   ),
 
   "ssh://user@host.xz/~/path/to/repo.git": GitUrlParseResult(
-    protocols: ["ssh"],
     port: null,
     resource: "host.xz",
     user: "user",
@@ -86,7 +77,6 @@ const INPUT = <String, GitUrlParseResult>{
   ),
 
   "ssh://host.xz/~/path/to/repo.git": GitUrlParseResult(
-    protocols: ["ssh"],
     port: null,
     resource: "host.xz",
     user: "",
@@ -95,7 +85,6 @@ const INPUT = <String, GitUrlParseResult>{
   ),
 
   "user@host.xz:/path/to/repo.git/": GitUrlParseResult(
-    protocols: [],
     port: null,
     resource: "host.xz",
     user: "user",
@@ -104,7 +93,6 @@ const INPUT = <String, GitUrlParseResult>{
   ),
 
   "user@host.xz:~user/path/to/repo.git/": GitUrlParseResult(
-    protocols: [],
     port: null,
     resource: "host.xz",
     user: "user",
@@ -113,7 +101,6 @@ const INPUT = <String, GitUrlParseResult>{
   ),
 
   "user@host.xz:path/to/repo.git": GitUrlParseResult(
-    protocols: [],
     port: null,
     resource: "host.xz",
     user: "user",
@@ -122,18 +109,16 @@ const INPUT = <String, GitUrlParseResult>{
   ),
 
   "rsync://host.xz/path/to/repo.git/": GitUrlParseResult(
-    protocols: ["rsync"],
     port: null,
     resource: "host.xz",
     user: "",
     pathname: "/path/to/repo.git",
-    protocol: "ssh",
+    protocol: "rsync",
   ),
 
   // Git Transport Protocol
 
   "git://host.xz/path/to/repo.git/": GitUrlParseResult(
-    protocols: ["git"],
     port: null,
     resource: "host.xz",
     user: "",
@@ -142,7 +127,6 @@ const INPUT = <String, GitUrlParseResult>{
   ),
 
   "git://host.xz/~user/path/to/repo.git/": GitUrlParseResult(
-    protocols: ["git"],
     port: null,
     resource: "host.xz",
     user: "",
@@ -152,7 +136,6 @@ const INPUT = <String, GitUrlParseResult>{
 
   // HTTP/S Transport Protocol
   "http://host.xz/path/to/repo.git/": GitUrlParseResult(
-    protocols: ["http"],
     port: null,
     resource: "host.xz",
     user: "",
@@ -161,7 +144,6 @@ const INPUT = <String, GitUrlParseResult>{
   ),
 
   "https://host.xz/path/to/repo.git/": GitUrlParseResult(
-    protocols: ["https"],
     port: null,
     resource: "host.xz",
     user: "",
@@ -170,7 +152,6 @@ const INPUT = <String, GitUrlParseResult>{
   ),
 
   "https://token:x-oauth-basic@host.xz/path/to/repo.git/": GitUrlParseResult(
-    protocols: ["https"],
     port: null,
     resource: "host.xz",
     user: "token:x-oauth-basic",
@@ -180,7 +161,6 @@ const INPUT = <String, GitUrlParseResult>{
   ),
 
   "https://x-token-auth:token@host.xz/path/to/repo.git/": GitUrlParseResult(
-    protocols: ["https"],
     port: null,
     resource: "host.xz",
     user: "x-token-auth:token",
@@ -190,7 +170,6 @@ const INPUT = <String, GitUrlParseResult>{
   ),
 
   "https://user@bitbucket.org/user/repo": GitUrlParseResult(
-    protocols: ["https"],
     port: null,
     resource: "bitbucket.org",
     user: "user",
@@ -199,7 +178,6 @@ const INPUT = <String, GitUrlParseResult>{
   ),
 
   "https://user@organization.git.cloudforge.com/name.git": GitUrlParseResult(
-    protocols: ["https"],
     port: null,
     resource: "organization.git.cloudforge.com",
     user: "user",
@@ -208,7 +186,6 @@ const INPUT = <String, GitUrlParseResult>{
   ),
 
   "https://token:x-oauth-basic@github.com/owner/name.git": GitUrlParseResult(
-    protocols: ["https"],
     port: null,
     resource: "github.com",
     user: "token:x-oauth-basic",
@@ -218,7 +195,6 @@ const INPUT = <String, GitUrlParseResult>{
   ),
 
   "https://x-token-auth:token@bitbucket.org/owner/name.git": GitUrlParseResult(
-    protocols: ["https"],
     port: null,
     resource: "bitbucket.org",
     user: "x-token-auth:token",
@@ -228,7 +204,6 @@ const INPUT = <String, GitUrlParseResult>{
   ),
 
   "/path/to/repo.git/": GitUrlParseResult(
-    protocols: [],
     port: null,
     resource: "",
     user: "",
@@ -237,7 +212,6 @@ const INPUT = <String, GitUrlParseResult>{
   ),
 
   "path/to/repo.git/": GitUrlParseResult(
-    protocols: [],
     port: null,
     resource: "",
     user: "",
@@ -246,7 +220,6 @@ const INPUT = <String, GitUrlParseResult>{
   ),
 
   "~/path/to/repo.git": GitUrlParseResult(
-    protocols: [],
     port: null,
     resource: "",
     user: "",
@@ -255,7 +228,6 @@ const INPUT = <String, GitUrlParseResult>{
   ),
 
   "file:///path/to/repo.git/": GitUrlParseResult(
-    protocols: ["file"],
     port: null,
     resource: "",
     user: "",
@@ -264,7 +236,6 @@ const INPUT = <String, GitUrlParseResult>{
   ),
 
   "file://~/path/to/repo.git/": GitUrlParseResult(
-    protocols: ["file"],
     port: null,
     resource: "",
     user: "",
@@ -273,7 +244,6 @@ const INPUT = <String, GitUrlParseResult>{
   ),
 
   "git@host.xz:path/name.git": GitUrlParseResult(
-    protocols: [],
     port: null,
     resource: "host.xz",
     user: "git",

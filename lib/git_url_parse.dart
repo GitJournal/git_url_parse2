@@ -1,36 +1,19 @@
 library git_url_parse;
 
-class GitUrlParseResult {
-  final List<String> protocols;
-  final int port;
-  final String resource;
-  final String user;
-  final String pathname;
-  final String protocol;
-  final String token;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  const GitUrlParseResult({
-    this.protocols,
-    this.port,
-    this.resource,
-    this.user,
-    this.pathname,
-    this.protocol,
-    this.token,
-  });
+part 'git_url_parse.freezed.dart';
 
-  bool operator ==(dynamic other) {
-    if (other is! GitUrlParseResult) return false;
-
-    var o = other as GitUrlParseResult;
-    return protocols == o.protocols &&
-        port == o.port &&
-        o.resource == o.resource &&
-        user == o.user &&
-        pathname == o.pathname &&
-        protocol == o.protocol &&
-        token == o.token;
-  }
+@freezed
+abstract class GitUrlParseResult with _$GitUrlParseResult {
+  factory GitUrlParseResult({
+    int port,
+    String resource,
+    String user,
+    String pathname,
+    String protocol,
+    String token,
+  }) = _GitUrlParseResult;
 }
 
 GitUrlParseResult gitUrlParse(String url) {

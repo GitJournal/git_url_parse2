@@ -5,6 +5,9 @@ author: Vishesh Handa
 homepage: https://gitjournal.io
 
 dependencies:
+  freezed_annotation:
 
 dev_dependencies:
   test: ^1.12.0
+  build_runner:
+  freezed: ^0.6.1
