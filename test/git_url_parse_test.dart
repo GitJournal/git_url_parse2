@@ -17,7 +17,7 @@ var INPUT = <String, GitUrlParseResult>{
     resource: "host.xz",
     user: "git",
     pathname: "/path/name.git",
-    protocol: "gti+ssh",
+    protocol: "git+ssh",
   ),
 
   "ssh://user@host.xz/path/to/repo.git/": GitUrlParseResult(
@@ -28,11 +28,11 @@ var INPUT = <String, GitUrlParseResult>{
     protocol: "ssh",
   ),
 
-  "ssh://host.xz:port/path/to/repo.git/": GitUrlParseResult(
-    port: null,
+  "ssh://host.xz:5497/path/to/repo.git/": GitUrlParseResult(
+    port: 5497,
     resource: "host.xz",
     user: "",
-    pathname: "/port/path/to/repo.git",
+    pathname: "/path/to/repo.git",
     protocol: "ssh",
   ),
 

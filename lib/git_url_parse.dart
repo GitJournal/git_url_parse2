@@ -17,7 +17,43 @@ abstract class GitUrlParseResult with _$GitUrlParseResult {
 }
 
 GitUrlParseResult gitUrlParse(String url) {
-  return GitUrlParseResult();
+  var uri = Uri.parse(url);
+  String token = null;
+
+  if (uri.userInfo.isNotEmpty) {
+    var splits = uri.userInfo.split(":");
+    if (splits.length == 2) {
+      if (splits[1] == "x-oauth-basic") {
+        token = splits[0];
+      } else if (splits[0] == "x-token-auth") {
+        token = splits[1];
+      }
+    }
+  }
+
+  var protocol = uri.scheme;
+  if (!uri.hasScheme) {
+    if (isSshUrl(url)) {
+      protocol = "ssh";
+    } else {
+      protocol = "file";
+    }
+  }
+
+  // Remove trailing / if ends with .git
+  var path = uri.path;
+  if (path.endsWith('.git/')) {
+    path = path.substring(0, path.length - 1);
+  }
+
+  return GitUrlParseResult(
+    port: uri.hasPort ? uri.port : null,
+    resource: uri.host,
+    user: uri.userInfo,
+    pathname: path,
+    protocol: protocol,
+    token: token,
+  );
 }
 
 bool isSshUrl(String url) {
