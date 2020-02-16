@@ -17,7 +17,42 @@ abstract class GitUrlParseResult with _$GitUrlParseResult {
 }
 
 GitUrlParseResult gitUrlParse(String url) {
-  var uri = Uri.parse(url);
+  var uri = Uri.tryParse(url);
+
+  if (uri == null) {
+    var pattern = '[A-Za-z][A-Za-z0-9+.-]*';
+    if (!RegExp(pattern).hasMatch(url)) {
+      return null;
+    }
+
+    var atIndexOf = url.indexOf('@');
+    var colonIndexOf = url.indexOf(':');
+    if (atIndexOf == -1 || colonIndexOf == -1) {
+      return null;
+    }
+    if (atIndexOf > colonIndexOf) {
+      return null;
+    }
+
+    var user = url.substring(0, atIndexOf);
+    var host = url.substring(atIndexOf + 1, colonIndexOf);
+    var path = url.substring(colonIndexOf + 1);
+
+    // Remove trailing / if ends with .git
+    if (path.endsWith('.git/')) {
+      path = path.substring(0, path.length - 1);
+    }
+
+    return GitUrlParseResult(
+      port: null,
+      resource: host,
+      user: user,
+      pathname: path,
+      protocol: 'ssh',
+      token: null,
+    );
+  }
+
   String token = null;
 
   if (uri.userInfo.isNotEmpty) {
